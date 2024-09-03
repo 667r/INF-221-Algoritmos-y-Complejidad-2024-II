@@ -75,8 +75,8 @@ void writeVectorToFile(const vector<int>& arr, const string& filename)
 // Driver code
 int main()
 {
-    string input_filename = "dataset_1000_0.txt";  // Change the filename as needed
-    string output_filename = "sorted_quick_1000_0.txt";  // Change the output filename as needed
+    string input_filename = "dataset_100000_1.txt";  // Change the filename as needed
+    string output_filename = "sorted_quick_100000_1.txt";  // Change the output filename as needed
 
     // Read the vector from the file
     vector<int> arr = readVectorFromFile(input_filename);
