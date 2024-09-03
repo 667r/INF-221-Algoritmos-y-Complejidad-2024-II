@@ -61,11 +61,10 @@ void save_matrix(const vector<vector<int>>& matrix, const string& filename) {
 }
 
 int main() {
-    // Example with 128x128 matrices
-    int N = 128;
-    string filename_A = "matrix_512x512_A.txt";
-    string filename_B = "matrix_512x512_B.txt";
-    string filename_C = "matrix_512x512_C.txt"; // File to store the result
+    int N = 256;
+    string filename_A = "matrix_256x512_A.txt";
+    string filename_B = "matrix_512x256_B.txt";
+    string filename_C = "matrix_I_C1.txt"; // File to store the result
 
     vector<vector<int>> A = read_matrix(filename_A, N, N);
     vector<vector<int>> B = read_matrix(filename_B, N, N);
@@ -76,17 +75,16 @@ int main() {
     // Perform the matrix multiplication
     vector<vector<int>> C = multiply(A, B, N);
 
+    auto stop = high_resolution_clock::now();
+
     // Save the result matrix to a file
     save_matrix(C, filename_C);
-
-    // Stop the timer
-    auto stop = high_resolution_clock::now();
 
     // Calculate the duration
     auto duration = duration_cast<microseconds>(stop - start);
 
     // Print the duration
-    cout << "Time taken by matrix multiplication and saving to file: " << duration.count() << " microseconds" << endl;
+    cout << "Time taken by matrix multiplication: " << duration.count() << " microseconds" << endl;
 
     return 0;
 }

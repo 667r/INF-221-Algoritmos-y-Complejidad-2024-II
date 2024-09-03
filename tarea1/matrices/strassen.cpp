@@ -1,5 +1,7 @@
 #include <bits/stdc++.h>
+#include <chrono>
 using namespace std;
+using namespace std::chrono;
 
 #define ROW_1 4
 #define COL_1 4
@@ -154,27 +156,55 @@ multiply_matrix(vector<vector<int> > matrix_A,
 	return result_matrix;
 }
 
-int main()
-{
-	vector<vector<int> > matrix_A = { { 1, 1, 1, 1 },
-									{ 2, 2, 2, 2 },
-									{ 3, 3, 3, 3 },
-									{ 2, 2, 2, 2 } };
+// Function to read a matrix from a file
+vector<vector<int>> read_matrix_from_file(const string &filename, int rows, int cols) {
+    ifstream file(filename);
+    vector<vector<int>> matrix(rows, vector<int>(cols));
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            file >> matrix[i][j];
+        }
+    }
+    file.close();
+    return matrix;
+}
 
-	print("Array A", matrix_A, 0, 0, ROW_1 - 1, COL_1 - 1);
+// Function to write a matrix to a file
+void write_matrix_to_file(const string &filename, const vector<vector<int>> &matrix) {
+    ofstream file(filename);
+    for (const auto &row : matrix) {
+        for (const auto &elem : row) {
+            file << elem << " ";
+        }
+        file << endl;
+    }
+    file.close();
+}
 
-	vector<vector<int> > matrix_B = { { 1, 1, 1, 1 },
-									{ 2, 2, 2, 2 },
-									{ 3, 3, 3, 3 },
-									{ 2, 2, 2, 2 } };
+int main() {
+    // Define the dimensions of the matrices
+    int N = 256;
 
-	print("Array B", matrix_B, 0, 0, ROW_2 - 1, COL_2 - 1);
+    // Read matrices A and B from files
+    vector<vector<int>> matrix_A = read_matrix_from_file("matrix_256x512_A.txt", N, N);
+    vector<vector<int>> matrix_B = read_matrix_from_file("matrix_512x256_B.txt", N, N);
 
-	vector<vector<int> > result_matrix(
-		multiply_matrix(matrix_A, matrix_B));
+	auto start = high_resolution_clock::now();
 
-	print("Result Array", result_matrix, 0, 0, ROW_1 - 1,
-		COL_2 - 1);
+    // Perform matrix multiplication
+    vector<vector<int>> result_matrix = multiply_matrix(matrix_A, matrix_B);
+
+	auto stop = high_resolution_clock::now();
+
+    // Write the result matrix to a file
+    write_matrix_to_file("matrix_I_C3.txt", result_matrix);
+	
+	auto duration = duration_cast<microseconds>(stop - start);
+
+    // Print the durations
+    cout << "Time taken by matrix multiplication: " << duration.count() << " microseconds" << endl;
+
+    return 0;
 }
 // src> https://www.geeksforgeeks.org/strassens-matrix-multiplication/
 // Time Complexity: T(N) = 7T(N/2) + O(N^2) => O(N^Log7)

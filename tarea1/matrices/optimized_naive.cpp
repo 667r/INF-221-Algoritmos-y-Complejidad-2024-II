@@ -81,10 +81,10 @@ void save_matrix(const vector<vector<int>>& matrix, const string& filename) {
 
 int main() {
     
-    int N = 128;
-    string filename_A = "matrix_512x512_A.txt";
-    string filename_B = "matrix_512x512_B.txt";
-    string filename_C = "matrix_512x512_C.txt"; // File to store the result
+    int N = 256;
+    string filename_A = "matrix_256x512_A.txt";
+    string filename_B = "matrix_512x256_B.txt";
+    string filename_C = "matrix_I_C2.txt"; // File to store the result
 
     vector<vector<int>> A = read_matrixA(filename_A, N, N);
     vector<vector<int>> B = read_matrix(filename_B, N, N);
@@ -98,12 +98,19 @@ int main() {
     // Stop the timer
     auto stop = high_resolution_clock::now();
 
+    save_matrix(C, filename_C);
+
     // Calculate the duration
     auto duration = duration_cast<microseconds>(stop - start);
 
     // Print the duration
-    cout << "Time taken by matrix multiplication and saving to file: " << duration.count() << " microseconds" << endl;
+    cout << "Time taken by matrix multiplication: " << duration.count() << " microseconds" << endl;
 
     return 0;
 }
 //src> https://www.geeksforgeeks.org/strassens-matrix-multiplication/
+
+// src> https://www.geeksforgeeks.org/strassens-matrix-multiplication/
+// Time Complexity: T(N) = 7T(N/2) + O(N^2) => O(N^Log7)
+// which is approximately O(N^2.8074) Code Contributed By:
+// lucasletum
