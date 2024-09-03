@@ -18,6 +18,25 @@ vector<vector<int>> read_matrix(const string& filename, int rows, int cols) {
 
     for (int i = 0; i < rows; ++i) {
         for (int j = 0; j < cols; ++j) {
+            file >> matrix[j][i];
+        }
+    }
+
+    file.close();
+    return matrix;
+}
+
+vector<vector<int>> read_matrixA(const string& filename, int rows, int cols) {
+    vector<vector<int>> matrix(rows, vector<int>(cols));
+    ifstream file(filename);
+
+    if (!file.is_open()) {
+        cerr << "Error: Could not open file " << filename << endl;
+        exit(1);
+    }
+
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
             file >> matrix[i][j];
         }
     }
@@ -33,7 +52,7 @@ vector<vector<int>> multiply(const vector<vector<int>>& A, const vector<vector<i
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
             for (int k = 0; k < N; k++) {
-                C[i][j] += A[i][k] * B[k][j];
+                C[i][j] += A[i][k] * B[j][k];
             }
         }
     }
@@ -61,13 +80,13 @@ void save_matrix(const vector<vector<int>>& matrix, const string& filename) {
 }
 
 int main() {
-    // Example with 128x128 matrices
+    
     int N = 128;
     string filename_A = "matrix_512x512_A.txt";
     string filename_B = "matrix_512x512_B.txt";
     string filename_C = "matrix_512x512_C.txt"; // File to store the result
 
-    vector<vector<int>> A = read_matrix(filename_A, N, N);
+    vector<vector<int>> A = read_matrixA(filename_A, N, N);
     vector<vector<int>> B = read_matrix(filename_B, N, N);
 
     // Start the timer
@@ -75,9 +94,6 @@ int main() {
 
     // Perform the matrix multiplication
     vector<vector<int>> C = multiply(A, B, N);
-
-    // Save the result matrix to a file
-    save_matrix(C, filename_C);
 
     // Stop the timer
     auto stop = high_resolution_clock::now();
