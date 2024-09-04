@@ -7,7 +7,7 @@
 using namespace std;
 using namespace std::chrono;
 
-/* Function to sort array using insertion sort */
+// funcion para ordenar un vector utilizando insertion sort
 void insertionSort(vector<int>& arr)
 {
     int n = arr.size();
@@ -15,9 +15,9 @@ void insertionSort(vector<int>& arr)
         int key = arr[i];
         int j = i - 1;
 
-        // Move elements of arr[0..i-1], that are
-        // greater than key, to one position ahead
-        // of their current position
+        // mueve los elementos del arreglo que son
+        // mas grandes que key a una posición adelante
+        // que la actual.
         while (j >= 0 && arr[j] > key) {
             arr[j + 1] = arr[j];
             j = j - 1;
@@ -26,7 +26,7 @@ void insertionSort(vector<int>& arr)
     }
 }
 
-/* Function to read a vector from a .txt file */
+// funcion para leer un vector de un archivo .txt
 vector<int> readVectorFromFile(const string& filename)
 {
     vector<int> arr;
@@ -43,7 +43,7 @@ vector<int> readVectorFromFile(const string& filename)
     return arr;
 }
 
-/* Function to write a vector to a .txt file */
+// funcion para escribir un vector a un archivo .txt
 void writeVectorToFile(const vector<int>& arr, const string& filename)
 {
     ofstream file(filename);
@@ -57,25 +57,22 @@ void writeVectorToFile(const vector<int>& arr, const string& filename)
     }
 }
 
-// Driver method
 int main()
 {
-    string input_filename = "dataset_100000_3.txt";  // Change the filename as needed
-    string output_filename = "sorted_dataset_100000_3.txt";  // Change the output filename as needed
+    string input_filename = "dataset_100000_3.txt";          // aca se puede cambiar el nombre del archivo de entrada
+    string output_filename = "sorted_dataset_100000_3.txt";  // lo mismo con el de salida
 
-    // Read the vector from the file
     vector<int> arr = readVectorFromFile(input_filename);
 
     auto start = high_resolution_clock::now();
 
-    // Sort the vector using Insertion Sort
+    // ordena el vector utilizando insertion sort
     insertionSort(arr);
 
     auto stop = high_resolution_clock::now();
 
     auto duration = duration_cast<microseconds>(stop - start);
 
-    // Write the sorted vector to the output file
     writeVectorToFile(arr, output_filename);
 
     cout << "Sorting completed in " << duration.count() << " microseconds" << endl;

@@ -7,8 +7,8 @@
 using namespace std;
 using namespace std::chrono;
 
-/* Function to read a vector from a .txt file */
-vector<int> readVectorFromFile(const string& filename)
+// función para leer un vector de un archivo .txt
+vector<int> leerVector(const string& filename)
 {
     vector<int> arr;
     ifstream file(filename);
@@ -19,13 +19,13 @@ vector<int> readVectorFromFile(const string& filename)
         }
         file.close();
     } else {
-        cerr << "Unable to open file: " << filename << endl;
+        cerr << "No se puede abrir el archivo: " << filename << endl;
     }
     return arr;
 }
 
-/* Function to write a vector to a .txt file */
-void writeVectorToFile(const vector<int>& arr, const string& filename)
+// funcion para escribir un vector en un archivo .txt
+void escribirVector(const vector<int>& arr, const string& filename)
 {
     ofstream file(filename);
     if (file.is_open()) {
@@ -34,30 +34,30 @@ void writeVectorToFile(const vector<int>& arr, const string& filename)
         }
         file.close();
     } else {
-        cerr << "Unable to open file: " << filename << endl;
+        cerr << "No se puede abrir el archivo: " << filename << endl;
     }
 }
 
-// Driver code 
 int main() 
 { 
-    string input_filename = "dataset_100000_0.txt";  // Change the filename as needed
-    string output_filename = "sorted_stl_100000_0.txt";  // Change the output filename as needed
+    string input_filename = "dataset_100000_0.txt";  // aca se puede cambiar el nombre del archivo de entrada
+    string output_filename = "sorted_stl_100000_0.txt";  // lo mismo con el de salida
 
-    // Read the vector from the file
-    vector<int> arr = readVectorFromFile(input_filename);
+    // leer el vector
+    vector<int> arr = leerVector(input_filename);
 
     auto start = high_resolution_clock::now();
 
-    // Sort the vector using STL sort
-    sort(arr.begin(), arr.end());
+    // ordena utilizando la función sort de la STL de c++
+    sort(arr.begin(), arr.end()); 
 
+    // calcula el tiempo que tomó ordenar el vector
     auto stop = high_resolution_clock::now();
 
     auto duration = duration_cast<microseconds>(stop - start);
 
-    // Write the sorted vector to the output file
-    writeVectorToFile(arr, output_filename);
+    // escribe eñ vector ordenado en un archivo .txt
+    escribirVector(arr, output_filename);
 
     cout << "STL sort completed in " << duration.count() << " microseconds" << endl;
 

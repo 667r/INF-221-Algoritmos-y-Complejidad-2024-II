@@ -7,20 +7,29 @@ using namespace std;
 
 vector<pair<int, int>> sizes = {{64, 64}, {128, 128}, {256, 256}, {512, 512}, {1024, 1024}, {128, 256}, {256, 512}};
 
+// funcion generadora de matrices
 vector<vector<int>> generate_matrix(int rows, int cols) {
     vector<vector<int>> matrix(rows, vector<int>(cols));
+
+    // crear un dispositivo aleatorio para obtener una semilla inicial
     random_device rd;
+    
+    // crear un generador de números aleatorios basado en Mersenne Twister
     mt19937 gen(rd());
+    
+    // definir una distribución uniforme para generar números enteros entre 0 y 99
     uniform_int_distribution<> dis(0, 99);
 
-    for (int i = 0; i < rows; ++i) {
-        for (int j = 0; j < cols; ++j) {
-            matrix[i][j] = dis(gen);
+    for (int i = 0; i < rows; ++i) {  
+        for (int j = 0; j < cols; ++j) {  
+            matrix[i][j] = dis(gen);  // asignar un número aleatorio a cada posición de la matriz
         }
     }
+
     return matrix;
 }
 
+// funcion para guardar una matriz en un archivo .txt
 void save_matrix(const vector<vector<int>>& matrix, const string& filename) {
     ofstream file(filename);
     for (const auto& row : matrix) {

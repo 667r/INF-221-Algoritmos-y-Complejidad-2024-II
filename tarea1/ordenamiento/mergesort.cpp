@@ -7,18 +7,18 @@
 using namespace std;
 using namespace std::chrono;
 
-// Merges two subarrays of arr[].
-// First subarray is arr[left..mid]
-// Second subarray is arr[mid+1..right]
+// mergea dos sub arreglos de arr[]
+// el primer sub arreglo es arr[left..mid]
+// el segundo sub arreglo es arr[mid+1..right]
 void merge(vector<int>& arr, int left, int mid, int right)
 {
     int n1 = mid - left + 1;
     int n2 = right - mid;
 
-    // Create temp vectors
+    // creo vectores temporales
     vector<int> L(n1), R(n2);
 
-    // Copy data to temp vectors L[] and R[]
+    // copia los datos a los vectores temporales L[] y R[]
     for (int i = 0; i < n1; i++)
         L[i] = arr[left + i];
     for (int j = 0; j < n2; j++)
@@ -27,7 +27,7 @@ void merge(vector<int>& arr, int left, int mid, int right)
     int i = 0, j = 0;
     int k = left;
 
-    // Merge the temp vectors back into arr[left..right]
+    // mergea los vectores temporales en arr[left..right]
     while (i < n1 && j < n2) {
         if (L[i] <= R[j]) {
             arr[k] = L[i];
@@ -39,14 +39,14 @@ void merge(vector<int>& arr, int left, int mid, int right)
         k++;
     }
 
-    // Copy the remaining elements of L[], if there are any
+    // copia los elementos restantes de L[], si hay alguno
     while (i < n1) {
         arr[k] = L[i];
         i++;
         k++;
     }
 
-    // Copy the remaining elements of R[], if there are any
+    // copia los elementos restantes de R[], si hay alguno
     while (j < n2) {
         arr[k] = R[j];
         j++;
@@ -54,7 +54,7 @@ void merge(vector<int>& arr, int left, int mid, int right)
     }
 }
 
-// Merge Sort function
+// funcion de merge sort
 void mergeSort(vector<int>& arr, int left, int right)
 {
     if (left >= right)
@@ -66,8 +66,8 @@ void mergeSort(vector<int>& arr, int left, int right)
     merge(arr, left, mid, right);
 }
 
-/* Function to read a vector from a .txt file */
-vector<int> readVectorFromFile(const string& filename)
+// funcion para leer un vector de un archivo .txt
+vector<int> leerVector(const string& filename)
 {
     vector<int> arr;
     ifstream file(filename);
@@ -83,8 +83,8 @@ vector<int> readVectorFromFile(const string& filename)
     return arr;
 }
 
-/* Function to write a vector to a .txt file */
-void writeVectorToFile(const vector<int>& arr, const string& filename)
+// funcion para escribir un vector en un archivo .txt
+void escribirVector(const vector<int>& arr, const string& filename)
 {
     ofstream file(filename);
     if (file.is_open()) {
@@ -97,26 +97,24 @@ void writeVectorToFile(const vector<int>& arr, const string& filename)
     }
 }
 
-// Driver code
 int main()
 {
-    string input_filename = "dataset_100000_3.txt";  // Change the filename as needed
-    string output_filename = "sorted_merge_100000_3.txt";  // Change the output filename as needed
+    string input_filename = "dataset_100000_3.txt";  // aca se puede cambiar el nombre del archivo de entrada
+    string output_filename = "sorted_merge_100000_3.txt";  // lo mismo con el de salida
 
-    // Read the vector from the file
-    vector<int> arr = readVectorFromFile(input_filename);
+    vector<int> arr = leerVector(input_filename);
 
     auto start = high_resolution_clock::now();
 
-    // Sort the vector using Merge Sort
+    // ordena el vector utilizando merge sort
     mergeSort(arr, 0, arr.size() - 1);
 
     auto stop = high_resolution_clock::now();
 
     auto duration = duration_cast<microseconds>(stop - start);
 
-    // Write the sorted vector to the output file
-    writeVectorToFile(arr, output_filename);
+    // escribe el vector ordenado en un archivo .txt
+    escribirVector(arr, output_filename);
 
     cout << "Merge sort completed in " << duration.count() << " microseconds" << endl;
 
