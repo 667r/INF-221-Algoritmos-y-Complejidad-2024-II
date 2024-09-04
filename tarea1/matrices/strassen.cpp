@@ -156,7 +156,7 @@ multiply_matrix(vector<vector<int> > matrix_A,
 	return result_matrix;
 }
 
-// Function to read a matrix from a file
+// funcion para leer una matriz de un archivo .txt
 vector<vector<int>> read_matrix_from_file(const string &filename, int rows, int cols) {
     ifstream file(filename);
     vector<vector<int>> matrix(rows, vector<int>(cols));
@@ -169,7 +169,7 @@ vector<vector<int>> read_matrix_from_file(const string &filename, int rows, int 
     return matrix;
 }
 
-// Function to write a matrix to a file
+// funcion para escribir una matriz en un archivo .txt
 void write_matrix_to_file(const string &filename, const vector<vector<int>> &matrix) {
     ofstream file(filename);
     for (const auto &row : matrix) {
@@ -182,30 +182,31 @@ void write_matrix_to_file(const string &filename, const vector<vector<int>> &mat
 }
 
 int main() {
-    // Define the dimensions of the matrices
+    // definir las dimesiones de la matriz
     int N = 256;
 
-    // Read matrices A and B from files
+    // leer las matrices de los archivos
     vector<vector<int>> matrix_A = read_matrix_from_file("matrix_256x512_A.txt", N, N);
     vector<vector<int>> matrix_B = read_matrix_from_file("matrix_512x256_B.txt", N, N);
 
 	auto start = high_resolution_clock::now();
 
-    // Perform matrix multiplication
     vector<vector<int>> result_matrix = multiply_matrix(matrix_A, matrix_B);
 
 	auto stop = high_resolution_clock::now();
 
-    // Write the result matrix to a file
     write_matrix_to_file("matrix_I_C3.txt", result_matrix);
 	
 	auto duration = duration_cast<microseconds>(stop - start);
 
-    // Print the durations
+    // imprime la duración de la multiplicación de matrices
     cout << "Time taken by matrix multiplication: " << duration.count() << " microseconds" << endl;
 
     return 0;
 }
+
+// No tengo la menor idea de como programar el algoritmo de Strassen, pero aquí está el 
+// código que encontré en geeksforgeeks
 // src> https://www.geeksforgeeks.org/strassens-matrix-multiplication/
 // Time Complexity: T(N) = 7T(N/2) + O(N^2) => O(N^Log7)
 // which is approximately O(N^2.8074) Code Contributed By:
