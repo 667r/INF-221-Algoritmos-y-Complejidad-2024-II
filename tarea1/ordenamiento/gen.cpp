@@ -15,7 +15,7 @@ vector<vector<int>> generate_lists(int size) {
 
     // lista aleatoria
     vector<int> random_list(size);
-    iota(random_list.begin(), random_list.end(), 0);  // Llena con 0, 1, 2, ..., size-1
+    iota(random_list.begin(), random_list.end(), 0);  // llena con 0, 1, 2, ..., size-1
     shuffle(random_list.begin(), random_list.end(), mt19937{random_device{}()});
     datasets.push_back(random_list);
 
@@ -24,7 +24,7 @@ vector<vector<int>> generate_lists(int size) {
     iota(sorted_list.begin(), sorted_list.end(), 0);
     datasets.push_back(sorted_list);
 
-    // Lista ordenada descendientemente
+    // lista ordenada descendientemente
     vector<int> reverse_list(size);
     iota(reverse_list.begin(), reverse_list.end(), 0);
     reverse(reverse_list.begin(), reverse_list.end());
