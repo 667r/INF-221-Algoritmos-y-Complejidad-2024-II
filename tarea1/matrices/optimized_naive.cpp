@@ -46,7 +46,7 @@ vector<vector<int>> read_matrixA(const string& filename, int rows, int cols) {
 }
 
 // funcion que implementa el algoritmo iterativo cubico de multiplicacion de matrices (3 for anidados)
-// pero antes habiendo traspuesto la matriz B (cambiando el orden de lectura de las matrices en la funcion read_matrix)
+// pero antes habiendo transpuesto la matriz B (cambiando el orden de lectura de las matrices en la funcion read_matrix)
 vector<vector<int>> multiply(const vector<vector<int>>& A, const vector<vector<int>>& B, int N) {
     vector<vector<int>> C(N, vector<int>(N, 0));
 
@@ -107,7 +107,4 @@ int main() {
     return 0;
 }
 
-// source> https://www.geeksforgeeks.org/strassens-matrix-multiplication/
-// Time Complexity: T(N) = 7T(N/2) + O(N^2) => O(N^Log7)
-// which is approximately O(N^2.8074) Code Contributed By:
-// lucasletum
+// este algoritmo es el mismo que en naive.cpp, pero con la diferencia de que se transpone la matriz B.
