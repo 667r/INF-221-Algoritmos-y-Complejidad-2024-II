@@ -27,7 +27,7 @@ void insertionSort(vector<int>& arr)
 }
 
 // funcion para leer un vector de un archivo .txt
-vector<int> readVectorFromFile(const string& filename)
+vector<int> leerVector(const string& filename)
 {
     vector<int> arr;
     ifstream file(filename);
@@ -44,7 +44,7 @@ vector<int> readVectorFromFile(const string& filename)
 }
 
 // funcion para escribir un vector a un archivo .txt
-void writeVectorToFile(const vector<int>& arr, const string& filename)
+void escribirVector(const vector<int>& arr, const string& filename)
 {
     ofstream file(filename);
     if (file.is_open()) {
@@ -62,7 +62,7 @@ int main()
     string input_filename = "dataset_100000_3.txt";          // aca se puede cambiar el nombre del archivo de entrada
     string output_filename = "sorted_dataset_100000_3.txt";  // lo mismo con el de salida
 
-    vector<int> arr = readVectorFromFile(input_filename);
+    vector<int> arr = leerVector(input_filename);
 
     auto start = high_resolution_clock::now();
 
@@ -73,9 +73,11 @@ int main()
 
     auto duration = duration_cast<microseconds>(stop - start);
 
-    writeVectorToFile(arr, output_filename);
+    escribirVector(arr, output_filename);
 
     cout << "Sorting completed in " << duration.count() << " microseconds" << endl;
 
     return 0;
 }
+
+// source del algoritmo: https://www.geeksforgeeks.org/insertion-sort-algorithm/
