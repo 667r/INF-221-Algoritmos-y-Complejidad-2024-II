@@ -38,7 +38,7 @@ vector<int> leerVector(const string& filename)
         }
         file.close();
     } else {
-        cerr << "Unable to open file: " << filename << endl;
+        cerr << "No se puede abrir el archivo: " << filename << endl;
     }
     return arr;
 }
@@ -53,7 +53,7 @@ void escribirVector(const vector<int>& arr, const string& filename)
         }
         file.close();
     } else {
-        cerr << "Unable to open file: " << filename << endl;
+        cerr << "No se puede abrir el archivo: " << filename << endl;
     }
 }
 

@@ -12,7 +12,7 @@ vector<vector<int>> read_matrix(const string& filename, int rows, int cols) {
     ifstream file(filename);
 
     if (!file.is_open()) {
-        cerr << "Error: Could not open file " << filename << endl;
+        cerr << "Error: No se pudo abrir el archivo " << filename << endl;
         exit(1);
     }
 
@@ -31,7 +31,7 @@ vector<vector<int>> read_matrixA(const string& filename, int rows, int cols) {
     ifstream file(filename);
 
     if (!file.is_open()) {
-        cerr << "Error: Could not open file " << filename << endl;
+        cerr << "Error: No se pudo abrir el archivo" << filename << endl;
         exit(1);
     }
 
@@ -66,7 +66,7 @@ void save_matrix(const vector<vector<int>>& matrix, const string& filename) {
     ofstream file(filename);
 
     if (!file.is_open()) {
-        cerr << "Error: Could not open file " << filename << endl;
+        cerr << "Error: No se pudo abrir el archivo " << filename << endl;
         exit(1);
     }
 

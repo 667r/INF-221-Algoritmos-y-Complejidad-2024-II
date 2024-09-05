@@ -48,9 +48,9 @@ multiply_matrix(vector<vector<int> > matrix_A,
 	int row_2 = matrix_B.size();
 
 	if (col_1 != row_2) {
-		cout << "\nError: The number of columns in Matrix "
-				"A must be equal to the number of rows in "
-				"Matrix B\n";
+		cout << "\nError: El número de columnas en la matriz "
+				"A debe ser igual al número de filas en la "
+				"matriz B\n";
 		return {};
 	}
 

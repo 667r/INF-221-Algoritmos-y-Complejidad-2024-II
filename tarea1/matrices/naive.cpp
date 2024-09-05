@@ -26,7 +26,7 @@ vector<vector<int>> read_matrix(const string& filename, int rows, int cols) {
     return matrix;
 }
 
-// funcion que implementa el algoritmo iterativo cubico de multiplicacion de matrices (3 for anidados)
+// funcion que implementa el algoritmo iterativo cubico de multiplicacion de matrices (3 for)
 vector<vector<int>> multiply(const vector<vector<int>>& A, const vector<vector<int>>& B, int N) {
     vector<vector<int>> C(N, vector<int>(N, 0));
 
@@ -46,7 +46,7 @@ void save_matrix(const vector<vector<int>>& matrix, const string& filename) {
     ofstream file(filename);
 
     if (!file.is_open()) {
-        cerr << "Error: Could not open file " << filename << endl;
+        cerr << "Error: No se pudo abrir el archivo " << filename << endl;
         exit(1);
     }
 
