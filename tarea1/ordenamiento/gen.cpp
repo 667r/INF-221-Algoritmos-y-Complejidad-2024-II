@@ -7,7 +7,7 @@
 using namespace std;
 
 // tamaños de los datasets
-vector<int> sizes = {1000, 10000, 100000, 1000000};
+vector<int> sizes = {1000, 10000, 100000};
 
 // funcion que genera los datasets  
 vector<vector<int>> generate_lists(int size) {
@@ -16,7 +16,8 @@ vector<vector<int>> generate_lists(int size) {
     // lista aleatoria
     vector<int> random_list(size);
     iota(random_list.begin(), random_list.end(), 0);  // llena con 0, 1, 2, ..., size-1
-    shuffle(random_list.begin(), random_list.end(), mt19937{random_device{}()});
+    // crear un generador de números aleatorios basado en Mersenne Twister
+    shuffle(random_list.begin(), random_list.end(), mt19937{random_device{}()}); 
     datasets.push_back(random_list);
 
     // lista ordenada ascendentemente
@@ -32,7 +33,9 @@ vector<vector<int>> generate_lists(int size) {
 
     // lista parcialmente ordenada
     vector<int> partial_list(size);
-    iota(partial_list.begin(), partial_list.begin() + size/2, 0); // Mitad ordenada
+    // llenar todo el vector con valores consecutivos
+    iota(partial_list.begin(), partial_list.end(), 0);
+    // barajar la segunda mitad del vector
     shuffle(partial_list.begin() + size/2, partial_list.end(), mt19937{random_device{}()});
     datasets.push_back(partial_list);
 

@@ -75,8 +75,8 @@ void escribirVector(const vector<int>& arr, const string& filename)
 
 int main()
 {
-    string input_filename = "dataset_100000_1.txt";  // aca se puede cambiar el nombre del archivo de entrada
-    string output_filename = "sorted_quick_100000_1.txt";  // lo mismo con el archivo de salida
+    string input_filename = "dataset_100000_3.txt";  // aca se puede cambiar el nombre del archivo de entrada
+    string output_filename = "sorted_quick_100000_3.txt";  // lo mismo con el archivo de salida
 
     vector<int> arr = leerVector(input_filename);
 
