@@ -53,7 +53,7 @@ vector<vector<int>> multiply(const vector<vector<int>>& A, const vector<vector<i
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
             for (int k = 0; k < N; k++) {
-                C[i][j] += A[i][k] * B[j][k];
+                C[i][j] += A[i][k] * B[k][j];
             }
         }
     }
@@ -85,7 +85,7 @@ int main() {
     int N = 256;
     string filename_A = "matrix_256x512_A.txt";
     string filename_B = "matrix_512x256_B.txt";
-    string filename_C = "matrix_I_C2.txt"; // archivo de salida
+    string filename_C = "matrix_256x512_C.txt"; // archivo de salida
 
     vector<vector<int>> A = read_matrixA(filename_A, N, N);
     vector<vector<int>> B = read_matrix(filename_B, N, N);

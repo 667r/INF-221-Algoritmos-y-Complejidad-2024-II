@@ -62,8 +62,8 @@ void save_matrix(const vector<vector<int>>& matrix, const string& filename) {
 
 int main() {
     int N = 256;
-    string filename_A = "matrix_256x512_A.txt";
-    string filename_B = "matrix_512x256_B.txt";
+    string filename_A = "matrix_1024x1024_A.txt";
+    string filename_B = "matrix_1024x1024_B.txt";
     string filename_C = "matrix_I_C1.txt"; // archivo de salida
 
     vector<vector<int>> A = read_matrix(filename_A, N, N);
